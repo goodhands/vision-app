@@ -1,13 +1,46 @@
 'use strict';
-
+import axios from 'axios';
 class ImageLabel{
 
     constructor(){
-        // Imports the Google Cloud client libraries
-        const {ImageAnnotatorClient} = require('@google-cloud/vision').v1;
-      
-        // Instantiates a client
-        this.client = new ImageAnnotatorClient();
+        this.apiKey = process.env.VUE_APP_VISION_KEY;
+        this.requestBody = [];
+    }
+
+    buildRequest(...images){
+        images.forEach(image => {
+            this.requestBody.push(
+                {
+                    "image": {
+                        "source": {
+                            "imageUri": image
+                        }
+                    },
+                    "features": [
+                        {
+                            type: "LABEL_DETECTION"
+                        }
+                    ]
+                }
+            );
+        });
+    }
+
+    async annotate(){
+        try {
+            const res = await axios.post('/images:annotate', {
+                requests: [
+                    this.requestBody
+                ]
+            }, {
+                params: {
+                    key: this.apiKey
+                }
+            });
+            return res;
+        } catch (err) {
+            return err;
+        }
     }
 
     // You can send multiple images to be annotated, this sample demonstrates how to do this with
@@ -21,9 +54,9 @@ class ImageLabel{
         // additional image request objects and store them in a list to be used below.
         const imageRequest = {
             image: {
-            source: {
-                imageUri: inputImageUri,
-            },
+                source: {
+                    imageUri: inputImageUri,
+                },
             },
             features: features,
         };
@@ -31,7 +64,7 @@ class ImageLabel{
         // Set where to store the results for the images that will be annotated.
         const outputConfig = {
             gcsDestination: {
-                uri: outputUri,
+                uri: process.env.output, //set output uri from environment
             },
             batchSize: 2, // The max number of responses to output in each JSON file
         };

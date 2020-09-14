@@ -2,6 +2,11 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input type="text" v-model="url" id="">
+    <button @click="label">Get labels</button>
+    <pre>
+      {{ labels }}
+    </pre>
   </div>
 </template>
 
@@ -16,7 +21,23 @@ export default {
   },
   data() {
     return {
+      url: "",
       imageService: new ImageLabel(),
+      labels: "",
+    }
+  },
+  mounted() {
+    console.log(process.env.VUE_APP_VISION_KEY);
+  },
+  methods: {
+    label(){
+      this.imageService.buildRequest(this.url);
+      this.imageService.annotate()
+      .then(results => {
+        this.labels = results;
+      }).catch(errors => {
+        console.log(errors);
+      });
     }
   },
 }
