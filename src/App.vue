@@ -7,12 +7,18 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import ImageLabel from './services/imageLabel';
 
 export default {
   name: 'App',
   components: {
     HelloWorld
-  }
+  },
+  data() {
+    return {
+      imageService: new ImageLabel(),
+    }
+  },
 }
 </script>
 
