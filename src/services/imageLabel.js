@@ -11,12 +11,12 @@ class ImageLabel{
         images.forEach(image => {
             this.requestBody.push(
                 {
-                    "image": {
-                        "source": {
-                            "imageUri": image
+                    image: {
+                        source: {
+                            imageUri: image
                         }
                     },
-                    "features": [
+                    features: [
                         {
                             type: "LABEL_DETECTION"
                         }
