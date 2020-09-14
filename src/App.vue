@@ -26,9 +26,6 @@ export default {
       labels: "",
     }
   },
-  mounted() {
-    console.log(process.env.VUE_APP_VISION_KEY);
-  },
   methods: {
     label(){
       this.imageService.buildRequest(this.url);
