@@ -2,6 +2,10 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3908158f-ce32-43c6-9197-58e3270b3ae4/deploy-status)](https://app.netlify.com/sites/vision-app/deploys)
 
+## Preview
+![Remi](src/assets/remi.png)
+> Image: [Omai Essentials](https://www.instagram.com/omai.essentials/?hl=en)
+
 ## Project setup
 ```
 npm install
