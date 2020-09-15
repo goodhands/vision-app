@@ -33,9 +33,7 @@ class ImageLabel{
     async annotate(){
         try {
             const res = await axios.post('/images:annotate', {
-                requests: [
-                    this.requestBody
-                ]
+                requests: this.requestBody
             }, {
                 params: {
                     key: this.apiKey

@@ -33,6 +33,7 @@ export default {
                 //save image urls on success
                 if (!error && result && result.event === "success") {
                     this.images.push(result.info.url);
+                    this.label.buildRequest(result.info.url);
                 }
 
                 if (!error && result && result.event === "close") {
@@ -43,8 +44,6 @@ export default {
         },
 
         labelImages(){
-            this.label.buildRequest(this.images);
-
             this.label.annotate()
             .then(response => {
                 this.busy = false;
