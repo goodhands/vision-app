@@ -2,11 +2,6 @@
   <div id="app" class="h-screen py-20 bg-gradient-to-r from-purple-400 to-red-500 via-pink-500">
     <main class="m-auto max-w-screen-sm">
       <image-uploader></image-uploader>
-      <input type="text" class="border-2" v-model="url">
-      <button @click="label">Get labels</button>
-      <pre>
-        {{ labels }}
-      </pre>
     </main>
   </div>
 </template>
