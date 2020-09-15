@@ -3,7 +3,7 @@
     <main class="m-auto max-w-screen-sm">
       <div id="nav">
         <router-link to="/">Home</router-link> |
-        <router-link to="/upload-widget">Upload Widget</router-link>
+        <router-link to="/widget">Upload Widget</router-link>
       </div>
       <router-view/>
     </main>
@@ -13,6 +13,9 @@
 <script>
 export default {
   name: 'App',
+  mounted() {
+    console.log(process.env.NODE_ENV)
+  },
 }
 </script>
 

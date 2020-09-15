@@ -25,6 +25,10 @@ class ImageLabel{
             );
         });
     }
+    
+    destroyRequest(){
+        this.requestBody = [];
+    }
 
     async annotate(){
         try {

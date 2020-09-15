@@ -1,19 +1,18 @@
 <template>
     <div>
-        
+        <div id="main">
+
+        </div>
     </div>
 </template>
 
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript">
-
-
-    document.getElementById("upload_widget").addEventListener("click", function(){
-        myWidget.open();
-    }, false);
-</script>
-
 <script>
+var cloudinary = require('cloudinary');
+// var cloudinary;
+// import {cloudinary} from 'cloudinary';
+
 export default {
+    name: "CloudinaryUpload",
     data() {
         return {
             cloudinaryWidget: null,
@@ -23,8 +22,8 @@ export default {
     methods: {
         mountWidget(){
             this.cloudinaryWidget = cloudinary.createUploadWidget({
-                cloudName: 'my_cloud_name', 
-                uploadPreset: 'my_preset'
+                cloudName: 'tmp', 
+                uploadPreset: 'vy3bve7h'
             }, (error, result) => { 
                     if (!error && result && result.event === "success") { 
                         console.log('Done! Here is the image info: ', result.info); 
@@ -35,6 +34,11 @@ export default {
     },
 
     mounted() {
+        cloudinary.config({
+            cloud_name: 'tmp',
+            api_key: '449256583625332',
+            api_secret: 'haWbhsPKoHrnVpVDlNBSpEP6_8I'
+        });
         //mount cloundinary
         this.mountWidget();
 
