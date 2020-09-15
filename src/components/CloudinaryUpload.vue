@@ -8,6 +8,15 @@
                 </button>
             </div>
         </div>
+
+        <div class="h-64 grid grid-rows-3 grid-flow-col gap-4" v-if="!busy">
+            <div v-for="(label, parentIndex) in result.responses" :key="parentIndex">
+                <img :src="images[parentIndex]" class="h-32 object-cover rounded-full w-32 w-full">
+                <span v-for="(annotations, index) in label.labelAnnotations" :key="index" class="bg-gray-100 bg-opacity-50 font-light mx-2 mb-2 inline-block p-3 rounded text-base text-pink-600">
+                   {{ annotations.description}}
+                </span>
+            </div>
+        </div>
     </div>
 </template>
 
