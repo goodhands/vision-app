@@ -6,14 +6,16 @@
                 <input type="text" v-if="!fileUpload" class="border-2 rounded-md" v-model="image" id="">
             </div>
         </div>
-        <button class="bg-gray-200" @click="fetchLabels">Fetch labels</button>
+        <button class="bg-gradient-to-b bg-gray-200 font-sans mb-5 mt-5 px-3 py-2 rounded shadow-2xl text-white" @click="fetchLabels">
+            Fetch labels
+        </button>
 
         <h2 class="text-3xl font-bold" v-if="!busy">
-            Labels: <span v-for="label in labels.responses" :key="label">
-                        <span v-for="(annotations, index) in label.labelAnnotations" :key="index">
-                            <p> {{ index }} </p> => <pre>{{ annotations.description }}</pre>
-                        </span>
-                    </span>
+            <span v-for="label in labels.responses" :key="label">
+                <span v-for="(annotations, index) in label.labelAnnotations" :key="index" class="bg-gray-100 bg-opacity-50 font-light mx-2 mb-2 inline-block p-3 rounded text-base text-pink-600">
+                    {{ annotations.description}}
+                </span>
+            </span>
         </h2>
     </div>
 </template>
