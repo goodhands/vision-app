@@ -1,38 +1,18 @@
 <template>
   <div id="app" class="h-screen py-20 bg-gradient-to-r from-purple-400 to-red-500 via-pink-500">
     <main class="m-auto max-w-screen-sm">
-      <image-uploader></image-uploader>
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/upload-widget">Upload Widget</router-link>
+      </div>
+      <router-view/>
     </main>
   </div>
 </template>
 
 <script>
-import ImageLabel from './services/imageLabel';
-import ImageUploader from './components/ImageUploader';
-
 export default {
   name: 'App',
-  components: {
-    ImageUploader
-  },
-  data() {
-    return {
-      url: "",
-      imageService: new ImageLabel(),
-      labels: "",
-    }
-  },
-  methods: {
-    label(){
-      this.imageService.buildRequest(this.url);
-      this.imageService.annotate()
-      .then(results => {
-        this.labels = results;
-      }).catch(errors => {
-        console.log(errors);
-      });
-    }
-  },
 }
 </script>
 
