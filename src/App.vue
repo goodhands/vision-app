@@ -1,23 +1,21 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <input type="text" v-model="url" id="">
-    <button @click="label">Get labels</button>
-    <pre>
-      {{ labels }}
-    </pre>
+  <div id="app" class="h-screen py-20">
+    <main class="content">
+      <input type="text" class="border-2" v-model="url">
+      <button @click="label">Get labels</button>
+      <pre>
+        {{ labels }}
+      </pre>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import ImageLabel from './services/imageLabel';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
   },
   data() {
     return {
@@ -47,6 +45,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
