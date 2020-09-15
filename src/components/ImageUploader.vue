@@ -6,24 +6,47 @@
                 <input type="text" v-if="!fileUpload" class="border-2 rounded-md" v-model="image" id="">
             </div>
         </div>
-        <h2 class="text-3xl font-bold">
-            Labels: <span v-for="label in labels" :key="label">{{label}}</span>
+        <button class="bg-gray-200" @click="fetchLabels">Fetch labels</button>
+
+        <h2 class="text-3xl font-bold" v-if="!busy">
+            Labels: <span v-for="label in labels.responses" :key="label">
+                        <span v-for="(annotations, index) in label.labelAnnotations" :key="index">
+                            <p> {{ index }} </p> => <pre>{{ annotations.description }}</pre>
+                        </span>
+                    </span>
         </h2>
     </div>
 </template>
 
 <script>
+import ImageLabel from '../services/imageLabel';
+
 export default {
     data() {
         return {
             image: '',
+            imageService: new ImageLabel(),
             labels: [],
             fileReader: new FileReader(),
             fileUpload: false,
+            busy: false,
         }
     },
 
     methods: {
+        fetchLabels(){
+            this.busy = true;
+
+            this.imageService.buildRequest(this.image);
+            this.imageService.annotate()
+            .then(results => {
+                this.busy = false;
+                this.labels = results.data;
+            }).catch(errors => {
+                console.log(errors);
+            });
+        },
+
         handleImageUpload(event){
             this.fileUpload = true;
 
