@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex h-64 items-center justify-center rounded-md w-full bg-gray-600" :style="image.length > 0 && { background: `url(${image})` }">
+        <div class="flex h-64 items-center justify-center rounded-md w-full bg-gray-600" :style="image.length > 0 && { background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: `center` }">
             <div class="bg-opacity-50 bg-white flex flex-col h-32 items-center justify-center w-56">
                 <input type="file" @change="handleImageUpload" accept="image/*" class="flex overflow-hidden pb-4 text-sm w-10/12" id="fileUpload">
                 <input type="text" v-if="!fileUpload" class="border-2 rounded-md" v-model="image" id="">
@@ -27,16 +27,16 @@ export default {
         handleImageUpload(event){
             this.fileUpload = true;
 
+            //set file preview
             this.fileReader.onload = () => {
                 this.image = this.fileReader.result;
             }
 
-            //set the raw file to avatar for form upload
-            // this.avatar = event.target.files[0];
+            //set the raw file for upload
+            this.uploadedRawFile = event.target.files[0];
 
             //stream the file preview 
             this.fileReader.readAsDataURL(event.target.files[0]);
-
         },
     },
 }
