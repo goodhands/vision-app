@@ -1,51 +1,42 @@
 <template>
     <div>
-        <div id="main">
-
+        <div class="flex h-64 items-center justify-center rounded-md w-full bg-gray-600">
+            <div class="bg-opacity-50 bg-white flex flex-col h-32 items-center justify-center w-56">
+                <small class="text-gray-600" for="input">Insert an image URL</small>
+                <button type="button" @click="openMediaWidget" class="bg-gradient-to-b bg-gray-200 font-sans mb-5 mt-5 px-3 py-2 rounded shadow-2xl text-white hover:shadow-none">
+                    Launch media upload
+                </button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-var cloudinary = require('cloudinary');
-// var cloudinary;
-// import {cloudinary} from 'cloudinary';
-
 export default {
     name: "CloudinaryUpload",
     data() {
         return {
-            cloudinaryWidget: null,
+            url: '',
         }
     },
-
     methods: {
-        mountWidget(){
-            this.cloudinaryWidget = cloudinary.createUploadWidget({
-                cloudName: 'tmp', 
-                uploadPreset: 'vy3bve7h'
-            }, (error, result) => { 
-                    if (!error && result && result.event === "success") { 
-                        console.log('Done! Here is the image info: ', result.info); 
-                    }
+        openMediaWidget(){
+            window.cloudinary.openUploadWidget({ cloud_name: 'tmp',
+                upload_preset: 'vy3bve7h'
+            },(error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log('Done uploading..: ', result.info);
+                    this.url = result.info.url;
                 }
-            )
+            }).open();
         }
     },
 
     mounted() {
-        cloudinary.config({
-            cloud_name: 'tmp',
-            api_key: '449256583625332',
-            api_secret: 'haWbhsPKoHrnVpVDlNBSpEP6_8I'
-        });
         //mount cloundinary
-        this.mountWidget();
-
-        //open the widget
-        setTimeout(() => {
-            this.cloudinaryWidget.open();
-        }, 1500);
+        // setTimeout(() => {
+        //     this.mountWidget();
+        // }, 1200);
     },
 }
 </script>
