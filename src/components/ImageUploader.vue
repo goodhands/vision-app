@@ -12,8 +12,8 @@
         </button>
 
         <h2 class="text-3xl font-bold" v-if="!busy">
-            <span v-for="(label, parentIndex) in labels.responses" :key="label">
-                <h2>Image {{ parentIndex + 1 }}</h2> <!-- Balance the index offset -->
+            <span v-for="label in labels.responses" :key="label">
+                <h2>Labels found for image: </h2> <!-- Balance the index offset -->
                 <span v-for="(annotations, index) in label.labelAnnotations" :key="index" class="bg-gray-100 bg-opacity-50 font-light mx-2 mb-2 inline-block p-3 rounded text-base text-pink-600">
                    {{ annotations.description}}
                 </span>
