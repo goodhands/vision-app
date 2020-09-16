@@ -4,11 +4,11 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3908158f-ce32-43c6-9197-58e3270b3ae4/deploy-status)](https://app.netlify.com/sites/vision-app/deploys)
 
 ## Watch Demo
-<!-- blank line -->
+
 <figure class="video_container">
   <iframe src="https://drive.google.com/file/d/11B7wb_cppQafcHhTCI6bLqfVx67tN0L5/preview" frameborder="0" allowfullscreen="true"></iframe>
 </figure>
-<!-- blank line -->
+
 
 ## Detect Labels for multiple images
 > Using the helpful Cloudinary upload widget, you can upload and label multiple images from various sources such as your local computer, google drive, Facebook, Instagram and any image hosted on a CDN.
