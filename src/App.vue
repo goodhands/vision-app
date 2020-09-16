@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="h-screen py-20 bg-gradient-to-r from-purple-400 to-red-500 via-pink-500">
     <main class="m-auto max-w-screen-sm">
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
+      <div id="nav" class="flex flex-row justify-between mb-2">
+        <router-link to="/">Home</router-link>
         <router-link to="/widget">Upload Widget</router-link>
       </div>
       <router-view/>
