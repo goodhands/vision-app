@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h-screen py-20 bg-gradient-to-r from-purple-400 to-red-500 via-pink-500">
+  <div id="app" class="h-screen px-5 py-20 bg-gradient-to-r from-purple-400 to-red-500 via-pink-500">
     <main class="m-auto max-w-screen-sm">
       <div id="nav" class="flex flex-row justify-between mb-2">
         <router-link to="/">Home</router-link>
