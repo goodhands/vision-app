@@ -3,7 +3,7 @@
     <main class="m-auto max-w-screen-sm">
       <div id="nav" class="flex flex-row justify-between mb-2">
         <router-link to="/">Home</router-link>
-        <router-link to="/widget" class="bg-purple-600 p-2 rounded text-gray-200 text-sm">Upload Widget</router-link>
+        <router-link to="/widget" class="bg-purple-600 p-2 rounded text-gray-200 text-sm">Upload</router-link>
       </div>
       <router-view/>
     </main>
