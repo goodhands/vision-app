@@ -126,7 +126,7 @@ export default {
 
 .carousel-cell {
   width: 35%;
-  height: 300px;
+  height: 80%;
   margin-right: 10px;
   background: #8C8;
   background-size: cover;
@@ -148,11 +148,31 @@ export default {
 }
 
 .carousel{
-    height: 300px;
+    height: 350px;
 }
 
 .carousel-cell img {
   display: block;
   max-height: 100%;
 }
+
+.carousel-cell div {
+    display: flex;
+    justify-content: stretch;
+    align-items: end;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    position: absolute;
+    bottom: -60px;
+}
+
+.carousel-cell div label {
+    font-size: x-small;
+    background-color: #efefef;
+    padding: 2px 5px;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    margin-bottom: 3px;
+}
+
 </style>
