@@ -6,8 +6,7 @@
 ## Watch Demo
 <!-- blank line -->
 <figure class="video_container">
-  <iframe src="https://drive.google.com/file/d/11B7wb_cppQafcHhTCI6bLqfVx67tN0L5/preview" frameborder="0" allowfullscreen="true"> 
-  </iframe>
+  <iframe src="https://drive.google.com/file/d/11B7wb_cppQafcHhTCI6bLqfVx67tN0L5/preview" frameborder="0" allowfullscreen="true"></iframe>
 </figure>
 <!-- blank line -->
 
