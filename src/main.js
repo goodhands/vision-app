@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import './assets/tailwind.css'
-import 'flickity/css/flickity.css'
+import 'flickity/dist/flickity.css'
 import router from './router'
 
 axios.defaults.baseURL = "https://vision.googleapis.com/v1"
