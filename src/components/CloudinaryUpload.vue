@@ -33,8 +33,8 @@ export default {
             flickityOptions: {
                 autoPlay: true,
                 pageDots: true,
-                height: "300px",
                 accessibility: true,
+                draggable: '>1',
                 adaptiveHeight: false,
                 setGallerySize: false
             }
@@ -50,7 +50,6 @@ export default {
                 //save image urls on success & build request body
                 if (!error && result && result.event === "success") {
                     this.images.push(result.info.secure_url);
-                    console.log(result);
                     this.label.buildRequest(result.info.secure_url);
                 }
 
@@ -127,13 +126,14 @@ export default {
 * { box-sizing: border-box; }
 
 .carousel-cell {
-  width: 35%;
-  height: 80%;
-  margin-right: 10px;
-  background: #8C8;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 5px;
+    width: 35%;
+    min-height: 325px;
+    margin-right: 10px;
+    background: #8c8;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    background-position: center;
 }
 
 /* cell number */
