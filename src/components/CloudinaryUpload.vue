@@ -47,12 +47,14 @@ export default {
                 cloud_name: process.env.VUE_APP_CDNRY_NAME,
                 upload_preset: process.env.VUE_APP_CDNRY_PRESET
             },(error, result) => {
-                //save image urls on success
+                //save image urls on success & build request body
                 if (!error && result && result.event === "success") {
-                    this.images.push(result.info.url);
-                    this.label.buildRequest(result.info.url);
+                    this.images.push(result.info.secure_url);
+                    console.log(result);
+                    this.label.buildRequest(result.info.secure_url);
                 }
 
+                //process image labels when the modal closes
                 if (!error && result && result.event === "close") {
                     this.busy = true;
                     this.labelImages();
