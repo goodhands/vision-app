@@ -150,7 +150,7 @@ export default {
 }
 
 .carousel{
-    height: 350px;
+    height: 390px;
 }
 
 .carousel-cell img {
