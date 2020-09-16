@@ -9,19 +9,18 @@
             </div>
         </div>
 
-        <div class="h-64 grid grid-rows-3 grid-flow-col gap-4" v-if="!busy">
-            <div v-for="(label, parentIndex) in result.responses" :key="parentIndex">
-                <img :src="images[parentIndex]" class="h-32 object-cover rounded-full w-32 w-full">
-                <span v-for="(annotations, index) in label.labelAnnotations" :key="index" class="bg-gray-100 bg-opacity-50 font-light mx-2 mb-2 inline-block p-3 rounded text-base text-pink-600">
-                   {{ annotations.description}}
-                </span>
-            </div>
+        <span v-if="busy">Please wait....</span>
+        <div class="carousel mt-12" v-show="!busy">
+            <div class="carousel-cell">1</div>
         </div>
+
     </div>
 </template>
 
 <script>
 import ImageLabel from '../services/imageLabel';
+import flickity from 'flickity';
+
 export default {
     name: "CloudinaryUpload",
     data() {
@@ -29,7 +28,15 @@ export default {
             images: [],
             label: new ImageLabel(),
             result: [],
+            slider: null,
             busy: false,
+            cellCount: 0,
+            flickityOptions: {
+                autoPlay: true,
+                pageDots: true,
+                height: "300px",
+                fullscreen: true,
+            }
         }
     },
     methods: {
@@ -57,12 +64,94 @@ export default {
             .then(response => {
                 this.busy = false;
                 this.result = response.data;
+                //build images into a slider once we have the results
+                this.buildSlides();
             })
             .catch(error => {
                 this.busy = false;
                 console.log(error);
             })
+        },
+
+        buildSlides(){
+            var slides = this.createSlide();
+            this.slider.append(slides, this.cellCount);
+        },
+
+        createSlide(){
+            var elements = [];
+
+            this.result.responses.forEach((item, index) => {
+
+                //increase slider count
+                this.cellCount++;
+
+                var cell = document.createElement('div');
+                cell.className = 'carousel-cell';
+                cell.style.backgroundImage = this.images[index];
+
+                //parent for the laebls returned
+                var labelParent = document.createElement('div');
+
+                cell.appendChild(labelParent);
+
+                item.labelAnnotations.map(annotation => {
+                    //create element for each label returned
+                    var labels = document.createElement('label');
+                    //attach each one to the parent
+                    labelParent.appendChild(labels)
+                    //set the content to the response from the API
+                    labels.innerText = annotation.description;
+                })
+
+                //push each cell element to the stack
+                elements.push(cell);
+            });
+
+            return elements;
         }
+    },
+
+    mounted() {
+        var carousel = document.querySelector('.carousel');
+        this.slider = new flickity(carousel, this.flickityOptions);
+        this.cellCount = this.slider.cells.length;
     },
 }
 </script>
+
+<style>
+* { box-sizing: border-box; }
+
+.carousel-cell {
+  width: 35%;
+  height: 200px;
+  margin-right: 10px;
+  background: #8C8;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+  text-align: center;
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
+
+.carousel.is-fullscreen .carousel-cell {
+  height: 100%;
+}
+
+.carousel{
+    height: 300px;
+}
+
+.carousel-cell img {
+  display: block;
+  max-height: 100%;
+}
+</style>
