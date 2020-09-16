@@ -19,6 +19,9 @@
 ![Remi](src/assets/remi.png)
 > Image: [Omai Essentials](https://www.instagram.com/omai.essentials/?hl=en)
 
+## Run this project locally
+To run this project locally, [clone this repo](https://github.com/goodhands/vision-app) and run the commands belows. Copy over the contents of `.env.local.example` to `.env.local` or run `cp .env.local.example .env.local` and replace the credentials with the one gotten from Google APIs and Cloudinary.
+
 ## Project setup
 ```
 npm install
