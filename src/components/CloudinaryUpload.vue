@@ -10,8 +10,7 @@
         </div>
 
         <span v-if="busy">Please wait....</span>
-        <div class="carousel mt-12" v-show="!busy">
-            <div class="carousel-cell">1</div>
+        <div class="carousel mt-12">
         </div>
 
     </div>
@@ -35,7 +34,9 @@ export default {
                 autoPlay: true,
                 pageDots: true,
                 height: "300px",
-                fullscreen: true,
+                accessibility: true,
+                adaptiveHeight: false,
+                setGallerySize: false
             }
         }
     },
@@ -75,7 +76,7 @@ export default {
 
         buildSlides(){
             var slides = this.createSlide();
-            this.slider.append(slides, this.cellCount);
+            this.slider.append(slides, 1);
         },
 
         createSlide(){
@@ -88,7 +89,7 @@ export default {
 
                 var cell = document.createElement('div');
                 cell.className = 'carousel-cell';
-                cell.style.backgroundImage = this.images[index];
+                cell.style.backgroundImage = `url(${this.images[index]})`;
 
                 //parent for the laebls returned
                 var labelParent = document.createElement('div');
@@ -125,7 +126,7 @@ export default {
 
 .carousel-cell {
   width: 35%;
-  height: 200px;
+  height: 300px;
   margin-right: 10px;
   background: #8C8;
   background-size: cover;
@@ -137,7 +138,7 @@ export default {
 .carousel-cell:before {
   display: block;
   text-align: center;
-  line-height: 200px;
+  line-height: 300px;
   font-size: 80px;
   color: white;
 }
